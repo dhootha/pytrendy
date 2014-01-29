@@ -18,17 +18,27 @@ from vectors import Vectors
 
 class vectorsTest(unittest.TestCase):
 
-
   def __init__(self, testCaseNames):
     unittest.TestCase.__init__(self,testCaseNames)
 
   def test_diffVectors (self):
-    s1 = [1.5, 1, 56, 45, -4.5];
-    s2 = [2, 4, 5, 45, -1];
-    expected = [-0.5, -3, 51, 0, -3.5];
+    s1 = [1.5, 1, 56, 45, -4.5]
+    s2 = [2, 4, 5, 45, -1]
+    expected = [-0.5, -3, 51, 0, -3.5]
     result = Vectors.diffVectors (s1, s2)
-    for i in range(len(result)):
-      self.assertEqual (result[i], expected[i])
+    self.assertEqual (result, expected)
+
+  def test_powVectors (self):
+    serie = [2,5,6,7.6]
+    expected = [4, 25, 36, 57.76]
+    result = Vectors.powVector(serie)
+    self.assertEqual(result, expected)
+
+  def test_avgVector (self):
+    serie = [4,5,6,0]
+    expected = 3.75
+    self.assertEqual (Vectors.avgVector(serie), 3.75)
+    self.assertEqual (Vectors.avgVector([]), 0)
 
 if __name__ == "__main__":
   unittest.main()

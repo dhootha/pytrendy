@@ -18,8 +18,20 @@ class Vectors:
   def diffVectors (series1, series2):
     result = [];
     if (len(series1) != len(series2)):
-      raise Exception("Invalid series length");
+      raise Exception("Invalid series length")
     for i in range(len(series1)):
-      result.append(series1[i] - series2[i]);
+      result.append(series1[i] - series2[i])
     return result;
 
+  @staticmethod
+  def powVector (serie):
+    result = []
+    for value in serie:
+      result.append (pow(value,2));
+    return result;
+
+  @staticmethod
+  def avgVector (serie):
+    if len(serie) == 0:
+      return 0
+    return sum(serie)/float(len(serie))
