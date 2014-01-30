@@ -21,17 +21,47 @@ class Vectors:
       raise Exception("Invalid series length")
     for i in range(len(series1)):
       result.append(series1[i] - series2[i])
-    return result;
+    return result
 
   @staticmethod
   def powVector (serie):
     result = []
     for value in serie:
-      result.append (pow(value,2));
-    return result;
+      result.append (pow(value,2))
+    return result
 
   @staticmethod
   def avgVector (serie):
     if len(serie) == 0:
       return 0
     return sum(serie)/float(len(serie))
+
+  @staticmethod
+  def absVector (serie):
+    result = []
+    for value in serie:
+      result.append(abs(value))
+    return result
+
+  @staticmethod
+  def divVectors (serie1, serie2):
+    result = []
+    if (len(serie1) != len(serie2)):
+      raise Exception("Invalid series length")
+    for i in range(len(serie1)):
+      result.append (serie1[i] / float(serie2[i]))
+    return result
+
+  @staticmethod
+  def combineVectors (serie1, serie2, fun):
+    result = []
+    if len(serie1) != len(serie2) | len(serie1) + len(serie2) < 2:
+      raise Exception("Invalid series length")
+    for i in range(len(serie1)):
+      result.append (fun(serie1[i], serie2[i]))
+    return result
+
+
+
+
+

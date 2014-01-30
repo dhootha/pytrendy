@@ -40,5 +40,28 @@ class vectorsTest(unittest.TestCase):
     self.assertEqual (Vectors.avgVector(serie), 3.75)
     self.assertEqual (Vectors.avgVector([]), 0)
 
+  def test_absVector (self):
+    serie = [-1, -1.4, 0, 5, 5e29, -5e4]
+    expected = [1, 1.4, 0, 5, 5e29, 5e4]
+    self.assertEqual (Vectors.absVector(serie), expected)
+    self.assertEqual (Vectors.absVector([]), [])
+
+
+  def test_divVectors (self):
+    serie1 = [4.5, 4, 10, -5]
+    serie2 = [2, 2, 5, -1]
+    expected = [2.25, 2, 2, 5]
+    self.assertEqual (Vectors.divVectors (serie1, serie2), expected)
+
+  # This function is used in the combineVectors test
+  def sumFunct(self, s1, s2):
+    return s1+s2
+
+  def test_combineVectors (self):
+    serie1 = [2,3,-5,90.4]
+    serie2 = [1,2,3,4]
+    expected = [3,5,-2, 94.4]
+    self.assertEqual (Vectors.combineVectors(serie1, serie2, self.sumFunct), expected)
+
 if __name__ == "__main__":
   unittest.main()
