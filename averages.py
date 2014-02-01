@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # Copyright 2014 Ruben Afonso, http://www.figurebelow.com
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,23 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from statistics import Statistics
-import unittest
+from vectors import Vectors
+from windowOp import WindowOp
 
-class statisticsTest (unittest.TestCase):
+class Averages:
 
-  def __init__(self, testCaseNames):
-    unittest.TestCase.__init__(self, testCaseNames)
+  @staticmethod
+  def sumWindow (series):
+    return Vectors.avgVector (series)
 
-  def test_mean (self):
-    self.assertEqual (Statistics.mean([]), 0)
-    self.assertEqual (Statistics.mean([0]), 0)
-    self.assertEqual (Statistics.mean([2,6,5,7,10,9,12,5]), 7)
-
-  def test_sd (self):
-    self.assertEqual (Statistics.sd([]), 0)
-    self.assertEqual (Statistics.sd([0]), 0)
-    self.assertEqual (Statistics.sd([2,4,4,4,5,5,7,9]), 2)
-
-if __name__ == "__main__":
-  unittest.main()
+  @staticmethod
+  def ma (series, order):
+    return WindowOp.windowOp (series, order, Averages.sumWindow)
