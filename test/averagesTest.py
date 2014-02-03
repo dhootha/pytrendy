@@ -34,5 +34,24 @@ class averagesTest (unittest.TestCase):
     print "MA of an empty list is another empty list ..."
     self.assertEqual (Averages.ma([], 2), [])
 
+  def test_ema (self):
+    series = [64.75, 63.79, 63.73, 63.73, 63.55,
+              63.19, 63.91, 63.85, 62.95, 63.37,
+              61.33, 61.51, 61.87, 60.25, 59.35,
+              59.95, 58.93, 57.68, 58.82, 58.87]
+    expected = [ 0,0,0,0,0,0,0,0,0,
+                 63.682,63.254,62.937,62.743,62.290,
+                 61.755,61.427,60.973,60.374,60.092,
+                 59.870]
+    result = Averages.ema (series, 10)
+    print ("EMA-10 values match ...")
+    self.assertEqual(len(result), len(expected))
+    for i in range (len(result)):
+      self.assertEqual (round (result[i], 3), expected[i])
+    print ("EMA-1 values match (initial serie) ...")
+    result = Averages.ema (series, 1)
+    for i in range (len(result)):
+      self.assertEqual (round(result[i], 2), series[i])
+
 if __name__ == "__main__":
   unittest.main()

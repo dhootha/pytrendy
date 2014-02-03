@@ -17,6 +17,7 @@ from windowOp import WindowOp
 
 class Averages:
 
+  # This auxiliary function is used in MA
   @staticmethod
   def sumWindow (series):
     return Vectors.avgVector (series)
@@ -24,3 +25,18 @@ class Averages:
   @staticmethod
   def ma (series, order):
     return WindowOp.windowOp (series, order, Averages.sumWindow)
+
+  @staticmethod
+  def ema (serie, period):
+    result = []
+    for i in range(period-1):
+      result.append(0)
+    k = (2.0/(period+1))
+    initSlice = serie[0:period]
+    previousDay = Vectors.avgVector(initSlice)
+    result.append(previousDay)
+    emaSlice = serie[period:]
+    for i in emaSlice:
+      previousDay = i * float(k) + previousDay * float((1-k))
+      result.append(previousDay)
+    return result
