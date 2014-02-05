@@ -14,3 +14,4 @@ Averages and intervals:
 
 * MA: simple moving average
 * EMA: exponential moving average
+* WMA: weighted moving average

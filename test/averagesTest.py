@@ -53,5 +53,15 @@ class averagesTest (unittest.TestCase):
     for i in range (len(result)):
       self.assertEqual (round(result[i], 2), series[i])
 
+  def test_wma (self):
+    series = [1, 2, 3, 4, 5, 6]
+    expected = [0.5, 0.83333, 1.16667, 1.5]
+    result = Averages.wma(series, [0.6, 0.3, 0.1])
+    print ("Checking WMA result length ...")
+    self.assertEqual (len(result), len(expected))
+    print ("Checking WMA result values ...")
+    for i in range(len(result)):
+      self.assertEqual (round (expected[i], 2), round(result[i], 2))
+
 if __name__ == "__main__":
   unittest.main()
